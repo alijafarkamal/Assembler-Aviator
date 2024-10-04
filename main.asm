@@ -29,10 +29,24 @@ start:
     mov al, 1                 ; Color index for dark blue
     mov cx, 320*80            ; Fill the remaining 80 rows (lower part)
     rep stosb                 ; Fill the area with dark blue
-	    mov dx,50          ; Initialize DX (loop counter or row size modifier)
+	 
+ mov bx,12     ;height of bird body
+ mov si, 31180;points to the middle of screen
+ 
+bird_body:
+mov di, si        ; Start at pixel 38400 (after first 120 rows)
+ 
+    mov al, 14               ; Color index for dark blue
+   mov cx, 18              ;width of body
+    rep stosb
+	sub bx,1              ; decrement the lenght counter
+	add si, 320           ;move to the nex row since one line consists of 320 pixels
+	cmp bx ,0 
+	jnz bird_body
+	 mov dx,50          ; Initialize DX (loop counter or row size modifier)
     mov si,120         ; Initialize SI (starting row)
-
 loop:
+
     ; Calculate di = 320 * si using shifts and adds
     mov ax, si         ; Move si into ax to preserve si
     shl ax, 8          ; Multiply by 256 (shift left by 8 bits)
