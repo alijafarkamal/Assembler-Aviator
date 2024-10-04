@@ -56,21 +56,6 @@ loop:
 out:
     ; Exit loop
 
-	;mov dx,50
-	;mov si,120
-	;loop:
-	;	mov di,320*si
-	;	mov al,9
-	;	cmp dx,0
-	;	jz out
-	;    mov cx,dx
-	;	rep stosb
-	;	sub dx,2
-	;	add di,2
-	;	add si,2
-	;    jmp loop
-	;out:
-	
     ; Wait for key press (simple method for demonstration purposes)
     xor ax, ax
     int 0x16                  ; Wait for a key press
