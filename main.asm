@@ -34,12 +34,12 @@ start:
  mov si, 31180;points to the middle of screen
  
 bird_body:
-mov di, si        ; Start at pixel 38400 (after first 120 rows)
+mov di, si        ; Start at pixel 31180 
  
-    mov al, 14               ; Color index for dark blue
+    mov al, 14               ; Color index for yellow
    mov cx, 18              ;width of body
     rep stosb
-	sub bx,1              ; decrement the lenght counter
+	sub bx,1              ; decrement the length counter
 	add si, 320           ;move to the nex row since one line consists of 320 pixels
 	cmp bx ,0 
 	jnz bird_body
