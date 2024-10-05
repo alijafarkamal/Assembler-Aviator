@@ -40,12 +40,12 @@ bird_body:
     mov al, 14            ;Color index for yellow
     mov cx, 18            ;width of body
     rep stosb
-	sub bx,1              ;decrement the length counter
-	add si, 320           ;move to the nex row since one line consists of 320 pixels
-	cmp bx ,0 
-	jnz bird_body
-	
-	mov bx,2              ;height of bird's peak
+    sub bx,1              ;decrement the length counter
+    add si, 320           ;move to the nex row since one line consists of 320 pixels
+    cmp bx ,0 
+    jnz bird_body
+
+    mov bx,2              ;height of bird's peak
     mov si, 32158         ;points to the top left corner of bird's peak
  
 bird_beak:
@@ -54,37 +54,39 @@ bird_beak:
     mov al, 10            ;Color index for lightgreen
     mov cx, 4             ;width of beak
     rep stosb
-	sub bx,1              ;decrement the length counter
-	add si, 320           ;move to the nex row since one line consists of 320 pixels
-	cmp bx ,0 
-	jnz bird_beak
-	mov si,0	
+    sub bx,1              ;decrement the length counter
+    add si, 320           ;move to the nex row since one line consists of 320 pixels
+    cmp bx ,0 
+    jnz bird_beak
+    mov si,0	
     mov bx,50             ;height of lower rectangle
     mov si, 48920         ;position of rectangle 
+
 green_rect_down:
 
-   mov di, si             ;Start at pixel 38400 
+    mov di, si             ;Start at pixel 38400 
     mov al, 2             ;Color index for Green
     mov cx, 28            ;width of body
     rep stosb
-	sub bx,1              ;decrement the length counter
-	add si, 320           ;move to the nex row since one line consists of 320 pixels
-	cmp bx ,0 
-	jnz green_rect_down
-	mov si,0	
+    sub bx,1              ;decrement the length counter
+    add si, 320           ;move to the nex row since one line consists of 320 pixels
+    cmp bx ,0 
+    jnz green_rect_down
+    mov si,0	
     mov bx,70             ;height of rectangle
     mov si, 00280         ;position of upper rectangle 
 green_rect_up:
 
    mov di, si             ;Start at pixel 00920 
-    mov al, 2             ;Color index for Green
+   mov al, 2             ;Color index for Green
    mov cx, 28             ;width of body
-    rep stosb
-	sub bx,1              ;decrement the length counter
-	add si, 320           ;move to the nex row since one line consists of 320 pixels
-	cmp bx ,0 
-	jnz green_rect_up
-	 mov dx,50            ;Initialize DX (loop counter or row size modifier)
+   rep stosb
+   sub bx,1              ;decrement the length counter
+   add si, 320           ;move to the nex row since one line consists of 320 pixels
+   cmp bx ,0 
+   jnz green_rect_up
+
+    mov dx,50            ;Initialize DX (loop counter or row size modifier)
     mov si,120            ;Initialize SI (starting row)
 	
 loop:
@@ -152,10 +154,10 @@ wave_loop_inverted:
     add si, 1              ; Move to the next row
     jmp wave_loop_inverted 
 end_wave_inverted:
-		mov dx, 50         ; Initialize DX (width of the wave at start)
+    mov dx, 50             ; Initialize DX (width of the wave at start)
     mov si, 120            ; Start at the 120th row (beginning of dark blue section)
 	
-	wave_loop1:
+  wave_loop1:
     ; Calculate di = 320 * si (for the next row)
     mov ax, si
     shl ax, 8              ; Multiply by 256 (shift left by 8 bits)
