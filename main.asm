@@ -44,6 +44,20 @@ mov di, si        ; Start at pixel 31180
 	add si, 320           ;move to the nex row since one line consists of 320 pixels
 	cmp bx ,0 
 	jnz bird_body
+	
+	 mov bx,2     ;height of bird body
+ mov si, 32158;points to the top left corner of bird's peak
+ 
+bird_beak:
+mov di, si        ; Start at pixel 32158 
+ 
+    mov al, 10               ; Color index for lightgreen
+   mov cx, 4             ;width of beak
+    rep stosb
+	sub bx,1              ; decrement the length counter
+	add si, 320           ;move to the nex row since one line consists of 320 pixels
+	cmp bx ,0 
+	jnz bird_beak
 		mov si,0	
  mov bx,50           ;height of rectangle
  mov si, 48920        ;position of rectangle 
