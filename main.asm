@@ -148,7 +148,7 @@ wave_loop1:
 	mov si, 120         		;reset SI
 	mov bp, 150        		;set BP
 	ret                 
-wave_loop_inverted1
+wave_loop_inverted1:
 	mov ax, si            	;copy SI
 	shl ax, 8           		;multiply
 	mov bx, si          		;copy SI
