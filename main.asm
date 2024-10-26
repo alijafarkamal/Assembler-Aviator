@@ -1,3 +1,4 @@
+
 [org 0x0100]
 jmp start
 graphics:
@@ -253,8 +254,39 @@ ground:
 	mov al,6              ;color brown
 	mov cx,320*10     ;width
 	rep stosb             ;draw
-	ret                 
+	ret 
+          
 
+iteration:
+	mov cx,64000
+delay1:
+
+	loop delay1
+	mov cx,64000
+delay1:
+	loop delay1
+	mov ax,es
+	mov ds,ax
+	mov ax,200
+	mov si,63998
+	mov di,63918
+	mov ax,0
+iter:
+	cmp ax,200
+	je outer
+	mov cx,40
+	std
+	rep movsw
+	sub si,160
+	sub di,160
+	inc ax
+	jmp iter
+outer:
+	mov cx,64000
+delay:
+	loop delay
+	;call iteration
+    ret 
 
 start:
 	call graphics
@@ -265,19 +297,19 @@ start:
 	call bird_beak
 	call green_rect_down
 	call green_rect_up
-	call wave_loop
-	call wave_loop_inverted
-	call wave_loop1
-	call wave_loop_inverted1
-	call wave_loop2
-	call wave_loop_inverted2
-	call wave_loop3
-	call ground
-
-xor ax, ax
-int 0x16
-mov ax, 0x0003
-int 0x10
-
-mov ax, 0x4C00
+	;call wave_loop
+	;call wave_loop_inverted
+	;call wave_loop1
+	;call wave_loop_inverted1
+	;call wave_loop2
+	;call wave_loop_inverted2
+	;call wave_loop3
+labela:
+	call iteration
+jmp labela
+	xor ax, ax
+	int 0x16	
+	mov ax, 0x0003
+	int 0x10
+	mov ax, 0x4C00
 int 0x21
